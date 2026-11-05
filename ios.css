@@ -304,7 +304,6 @@ input { font: inherit; color: inherit; }
   gap: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 2px 16px 6px;
   margin: 0 -16px;
@@ -548,7 +547,7 @@ input { font: inherit; color: inherit; }
 /* ---------- misc ---------- */
 .divider { height: 0.5px; background: rgba(12, 21, 34, 0.08); margin: 18px 0; }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
 .reveal.is-in { opacity: 1; transform: none; }
 
 .toast {
@@ -673,4 +672,93 @@ input { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   Scroll performance
+   Real blur is kept only on fixed chrome (topbar / tabbar / sheet).
+   In-flow glass cards use translucent fills instead of backdrop-filter,
+   which avoids re-blurring dozens of layers every scroll frame.
+   ========================================================= */
+.ambient {
+  filter: none;
+  background:
+    radial-gradient(42vw 42vw at 12% 4%, rgba(96, 178, 255, 0.34), rgba(96, 178, 255, 0.1) 46%, transparent 70%),
+    radial-gradient(46vw 46vw at 92% 0%, rgba(126, 232, 208, 0.32), rgba(126, 232, 208, 0.09) 48%, transparent 72%),
+    radial-gradient(52vw 52vw at 70% 32%, rgba(190, 178, 255, 0.24), rgba(190, 178, 255, 0.07) 50%, transparent 74%),
+    radial-gradient(40vw 40vw at 0% 45%, rgba(255, 205, 214, 0.22), rgba(255, 205, 214, 0.06) 50%, transparent 74%);
+  transform: translateZ(0);
+}
+
+.glass,
+.glass-strong,
+.expert-card,
+.region-card,
+.dept-tile,
+.network-more,
+.person,
+.faculty-card,
+.hospital-card,
+.leader-card,
+.feature-card,
+.about-number,
+.about-link,
+.list,
+.search,
+.segmented,
+.member-sheet-block {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.glass { background: rgba(255, 255, 255, 0.82); }
+.expert-card,
+.region-card,
+.dept-tile,
+.person,
+.faculty-card,
+.hospital-card,
+.leader-card,
+.feature-card,
+.about-number,
+.about-link,
+.list { background: rgba(255, 255, 255, 0.86); }
+.network-more { background: rgba(255, 255, 255, 0.78); }
+.search { background: rgba(255, 255, 255, 0.94); }
+.segmented { background: rgba(236, 241, 247, 0.92); }
+.member-sheet-block { background: rgba(255, 255, 255, 0.82); }
+
+.expert-card,
+.region-card,
+.dept-tile,
+.network-more,
+.person,
+.faculty-card,
+.hospital-card,
+.leader-card,
+.feature-card,
+.about-number,
+.about-link { box-shadow: 0 6px 18px -14px rgba(13, 38, 76, 0.38); }
+
+.topbar.is-scrolled {
+  -webkit-backdrop-filter: saturate(170%) blur(20px);
+  backdrop-filter: saturate(170%) blur(20px);
+}
+.tabbar {
+  -webkit-backdrop-filter: saturate(170%) blur(24px);
+  backdrop-filter: saturate(170%) blur(24px);
+  transform: translateX(-50%) translateZ(0);
+  will-change: transform;
+}
+
+/* WeChat / low-memory devices: no live blur on fixed chrome */
+html.perf-lite .topbar.is-scrolled,
+html.perf-lite .tabbar {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html.perf-lite .topbar.is-scrolled { background: rgba(248, 250, 253, 0.97); }
+html.perf-lite .tabbar {
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 10px 30px -16px rgba(13, 38, 76, 0.32);
 }

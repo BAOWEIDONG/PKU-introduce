@@ -103,8 +103,12 @@
   function initScroll() {
     const bar = $(".topbar");
     if (!bar) return;
+    let scrolled = null;
     const apply = () => {
-      bar.classList.toggle("is-scrolled", window.scrollY > 8);
+      const next = window.scrollY > 8;
+      if (next === scrolled) return;
+      scrolled = next;
+      bar.classList.toggle("is-scrolled", next);
     };
     apply();
     window.addEventListener("scroll", apply, { passive: true });
@@ -239,7 +243,15 @@
     });
   }
 
+  function initPerfMode() {
+    const ua = navigator.userAgent || "";
+    const wechat = /MicroMessenger/i.test(ua);
+    const lowMemory = typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4;
+    if (wechat || lowMemory) document.documentElement.classList.add("perf-lite");
+  }
+
   function init() {
+    initPerfMode();
     initScroll();
     initReveal();
     initProgress();

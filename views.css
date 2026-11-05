@@ -28,8 +28,6 @@
   z-index: -1;
   background: url("./assets/nursing.webp") center/cover;
   opacity: 0.06;
-  filter: blur(1.5px);
-  mix-blend-mode: luminosity;
 }
 .camp-hero::after {
   content: "";
@@ -145,7 +143,6 @@
   overflow-x: auto;
   scrollbar-width: none;
   padding: 2px 16px 4px;
-  -webkit-overflow-scrolling: touch;
 }
 .hospital-filter::-webkit-scrollbar { display: none; }
 .hospital-filter .chip { height: 30px; font-size: 12px; }
@@ -269,8 +266,6 @@
   z-index: -1;
   background: url("./assets/hospital-intro.webp") center 30%/cover;
   opacity: 0.09;
-  filter: blur(1px);
-  mix-blend-mode: luminosity;
 }
 .team-hero-card h1 { margin: 8px 0 0; font-size: 28px; font-weight: 740; letter-spacing: -0.04em; }
 .team-hero-card p { margin: 6px 0 0; font-size: 12.5px; color: rgba(255, 255, 255, 0.7); line-height: 1.6; }

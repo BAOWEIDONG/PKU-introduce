@@ -83,8 +83,7 @@
   background-image: url("./assets/hospital-intro.webp");
   background-size: cover;
   background-position: center 40%;
-  opacity: 0.16;
-  mix-blend-mode: luminosity;
+  opacity: 0.14;
 }
 .camp-entry::after {
   content: "";
@@ -275,3 +274,6 @@
   line-height: 1.55;
   color: var(--ink-3);
 }
+
+/* perf: horizontal rail should not fight vertical scroll */
+.scroller { scroll-snap-type: x proximity; }
