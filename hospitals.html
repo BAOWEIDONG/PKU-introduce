@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3f6fa" />
+  <meta name="description" content="北大医疗分院网络：6 大地区 12 家机构，支持按地区、机构类型搜索。" />
+  <title>分院网络 · 北大医疗</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./ios.css" />
+  <link rel="stylesheet" href="./views.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <script src="./icons.js"></script>
+
+  <header class="topbar">
+    <a class="back-btn" href="./mobile.html">
+      <svg class="ic ic-18"><use href="#i-back"/></svg>首页
+    </a>
+    <span class="topbar-spacer"></span>
+    <span class="topbar-title">分院网络</span>
+    <span class="topbar-spacer"></span>
+    <a class="icon-btn" href="./team.html" aria-label="师资团队">
+      <svg class="ic ic-18"><use href="#i-users"/></svg>
+    </a>
+  </header>
+
+  <main class="page">
+    <section class="hospital-hero">
+      <p class="eyebrow">MEDICAL NETWORK · PKU HEALTHCARE</p>
+      <h1 class="display" style="font-size:34px">分院网络</h1>
+      <p class="lead">以北京为起点，布局天津、山东、山西、湖南、广东，综合医院、康复医院、专科医院与健康管理中心协同服务。</p>
+
+      <div class="map-card" id="mapCard" aria-hidden="true">
+        <span class="map-label">NETWORK COVERAGE</span>
+        <span class="map-count"><b>12</b> 家成员机构 · 6 座城市</span>
+        <span class="map-dot" style="left:53%;top:30%;--tone:#0b63e5"><i></i>北京</span>
+        <span class="map-dot" style="left:69%;top:38%;--tone:#3f8cff"><i></i>天津</span>
+        <span class="map-dot" style="left:57%;top:52%;--tone:#0aa39a"><i></i>山东</span>
+        <span class="map-dot" style="left:38%;top:43%;--tone:#7c6cf0"><i></i>山西</span>
+        <span class="map-dot" style="left:35%;top:68%;--tone:#e07a3f"><i></i>湖南</span>
+        <span class="map-dot" style="left:55%;top:83%;--tone:#c46a5a"><i></i>广东</span>
+        <svg viewBox="0 0 320 172" preserveAspectRatio="none">
+          <path d="M170 54 L222 68 L184 90 L122 76 Z" fill="none" stroke="rgba(11,99,229,.18)" stroke-width="1" stroke-dasharray="3 4"/>
+          <path d="M184 90 L115 118 L175 145" fill="none" stroke="rgba(11,99,229,.14)" stroke-width="1" stroke-dasharray="3 4"/>
+          <circle cx="170" cy="54" r="26" fill="none" stroke="rgba(11,99,229,.12)"/>
+          <circle cx="170" cy="54" r="44" fill="none" stroke="rgba(11,99,229,.07)"/>
+        </svg>
+      </div>
+    </section>
+
+    <div class="team-toolbar" style="top:calc(var(--safe-top) + 56px)">
+      <div class="search">
+        <svg class="ic ic-18"><use href="#i-search"/></svg>
+        <input id="hospitalSearch" type="search" placeholder="搜索医院、地址或电话" autocomplete="off" aria-label="搜索机构" />
+        <button class="search-clear" type="button" aria-label="清空搜索"><svg class="ic ic-16"><use href="#i-close"/></svg></button>
+      </div>
+    </div>
+
+    <div class="region-tabs">
+      <div class="hospital-filter" id="regionFilter"></div>
+    </div>
+
+    <div class="result-line"><span id="hospitalResult">共 12 家机构</span><button type="button" id="hospitalReset" style="font-size:12px;color:var(--brand);font-weight:600">重置</button></div>
+
+    <div class="hospital-list" id="hospitalList"></div>
+
+    <div class="empty-state hide" id="hospitalEmpty">
+      <b>没有找到匹配机构</b>
+      <p>换个关键词，或清除地区筛选后再试。</p>
+      <button class="btn btn-ghost" type="button" id="hospitalEmptyReset">查看全部机构</button>
+    </div>
+
+    <footer class="footer">
+      <img src="./assets/logo.png" alt="北大医疗" />
+      <p>北大医疗 · 中国平安集团成员</p>
+      <p>6 大地区 · 12 家机构</p>
+    </footer>
+  </main>
+
+  <nav class="tabbar" aria-label="主导航">
+    <a href="./mobile.html"><svg class="ic"><use href="#i-home"/></svg><span>首页</span></a>
+    <a href="./team.html"><svg class="ic"><use href="#i-users"/></svg><span>师资</span></a>
+    <a href="./camp.html"><svg class="ic"><use href="#i-activity"/></svg><span>健康营</span></a>
+    <a class="is-active" href="./hospitals.html" aria-current="page"><svg class="ic"><use href="#i-building"/></svg><span>分院</span></a>
+  </nav>
+
+  <div class="backdrop" id="appBackdrop"></div>
+  <section class="sheet" id="hospitalSheet" aria-hidden="true" aria-label="机构详情">
+    <span class="sheet-handle"></span>
+    <div class="sheet-body" id="hospitalSheetBody"></div>
+  </section>
+  <div class="toast" id="appToast" role="status" aria-live="polite"></div>
+
+  <script src="./institutions-data.js"></script>
+  <script src="./app.js"></script>
+  <script src="./hospitals.js"></script>
+</body>
+</html>

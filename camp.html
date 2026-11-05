@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3f6fa" />
+  <meta name="description" content="北医健康营第 7 期项目团队：项目负责人、医师、营养师、康复师、健管师与运营督导，以及他们所属的医院。" />
+  <title>北医健康营 · 项目团队</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./ios.css" />
+  <link rel="stylesheet" href="./views.css" />
+</head>
+<body class="camp-page">
+  <div class="ambient" aria-hidden="true"></div>
+  <script src="./icons.js"></script>
+
+  <header class="topbar topbar-light">
+    <a class="back-btn" href="./mobile.html">
+      <svg class="ic ic-18"><use href="#i-back"/></svg>首页
+    </a>
+    <span class="topbar-spacer"></span>
+    <span class="topbar-title">健康营</span>
+    <span class="topbar-spacer"></span>
+    <a class="icon-btn" href="./team.html" aria-label="师资团队">
+      <svg class="ic ic-18"><use href="#i-users"/></svg>
+    </a>
+  </header>
+
+  <main class="page">
+    <!-- camp hero -->
+    <section class="camp-hero">
+      <div class="camp-hero-top">
+        <span class="camp-live"><i class="live-dot"></i><span id="heroStatus">进行中</span></span>
+        <span class="camp-hero-edition" id="heroEdition">第 7 期</span>
+      </div>
+      <h1>北医健康营</h1>
+      <p class="camp-hero-theme" id="heroTheme">28 天代谢重塑计划</p>
+      <p class="camp-hero-summary" id="heroSummary"></p>
+
+      <div class="camp-hero-progress">
+        <div class="camp-progress-label">
+          <span id="heroDates">10.19 — 11.15</span>
+          <span><b id="heroDay">第 18 天</b> / 28 天</span>
+        </div>
+        <div class="progress"><i data-progress="64" id="heroBar"></i></div>
+      </div>
+
+      <div class="camp-hero-stats">
+        <span><b id="heroTeam">17</b><small>项目团队</small></span>
+        <span><b id="heroHospitals">8</b><small>来源医院</small></span>
+        <span><b id="heroRoles">6</b><small>专业角色</small></span>
+      </div>
+    </section>
+
+    <!-- timeline -->
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">营期进程</h2>
+          <p class="section-sub">第 3 周 · 强化期</p>
+        </div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- roster -->
+    <section class="section reveal" id="rosterSection">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">项目团队</h2>
+          <p class="section-sub" id="rosterSub">项目案例 · 可按角色、医院自由浏览</p>
+        </div>
+        <span class="chip teal" id="rosterCount">17 人</span>
+      </div>
+
+      <div class="segmented" id="roleFilter" role="tablist" aria-label="按角色筛选"></div>
+
+      <div class="hospital-filter-wrap">
+        <div class="hospital-filter" id="hospitalFilter" aria-label="按医院筛选"></div>
+      </div>
+
+      <div id="rosterList" class="roster-list"></div>
+      <div class="empty-state hide" id="rosterEmpty">
+        <b>没有匹配的成员</b>
+        <p>换一个角色或医院筛选试试。</p>
+        <button class="btn btn-ghost" type="button" id="rosterReset">查看全部成员</button>
+      </div>
+    </section>
+
+    <!-- source hospitals -->
+    <section class="section reveal" id="hospitalSection">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">团队来自哪些医院</h2>
+          <p class="section-sub">北医系统与北大医疗成员机构</p>
+        </div>
+      </div>
+      <div class="list" id="sourceHospitals"></div>
+      <p class="data-note">以上为项目案例。团队成员与所属医院可按项目需要自由组合，也可按角色或医院自由浏览。</p>
+    </section>
+
+    <footer class="footer">
+      <img src="./assets/logo.png" alt="北大医疗" />
+      <p>北医健康营 · 北京大学国际医院</p>
+      <p>多学科团队 · 全程陪跑</p>
+    </footer>
+  </main>
+
+  <nav class="tabbar" aria-label="主导航">
+    <a href="./mobile.html"><svg class="ic"><use href="#i-home"/></svg><span>首页</span></a>
+    <a href="./team.html"><svg class="ic"><use href="#i-users"/></svg><span>师资</span></a>
+    <a class="is-active" href="./camp.html" aria-current="page"><svg class="ic"><use href="#i-activity"/></svg><span>健康营</span></a>
+    <a href="./hospitals.html"><svg class="ic"><use href="#i-building"/></svg><span>分院</span></a>
+  </nav>
+
+  <!-- member sheet -->
+  <div class="backdrop" id="appBackdrop"></div>
+  <section class="sheet" id="memberSheet" aria-hidden="true" aria-label="成员详情">
+    <span class="sheet-handle"></span>
+    <div class="sheet-body" id="memberSheetBody"></div>
+  </section>
+
+  <div class="toast" id="appToast" role="status" aria-live="polite"></div>
+
+  <script src="./medical-team-data.js"></script>
+  <script src="./operations-team-data.js"></script>
+  <script src="./camp-data.js"></script>
+  <script src="./member-details.js"></script>
+  <script src="./app.js"></script>
+  <script src="./camp.js"></script>
+</body>
+</html>

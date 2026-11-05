@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3f6fa" />
+  <meta name="description" content="北京大学国际医院科室介绍、学科带头人与医生团队。" />
+  <title>科室介绍 · 北京大学国际医院</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./ios.css" />
+  <link rel="stylesheet" href="./views.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <script src="./icons.js"></script>
+
+  <header class="topbar">
+    <a class="back-btn" href="./team.html?view=departments">
+      <svg class="ic ic-18"><use href="#i-back"/></svg>科室
+    </a>
+    <span class="topbar-spacer"></span>
+    <span class="topbar-title" id="deptTopTitle">科室介绍</span>
+    <span class="topbar-spacer"></span>
+    <span style="width:40px"></span>
+  </header>
+
+  <main class="page no-tabs" id="deptContent" style="padding-top:calc(var(--safe-top) + 72px)">
+    <div class="dept-hero"><p class="muted">正在加载科室介绍…</p></div>
+  </main>
+
+  <footer class="footer">
+    <img src="./assets/logo.png" alt="北大医疗" />
+    <p>北京大学国际医院 · 科室介绍</p>
+  </footer>
+
+  <div class="backdrop" id="appBackdrop"></div>
+  <div class="toast" id="appToast" role="status" aria-live="polite"></div>
+
+  <script src="./departments-data.js"></script>
+  <script src="./app.js"></script>
+  <script src="./dept-view.js"></script>
+</body>
+</html>

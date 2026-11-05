@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3f6fa" />
+  <meta name="description" content="北大医疗 · 北医专家与健康管理团队，查看师资力量、健康营项目团队与分院网络。" />
+  <title>北大医疗｜北医的专家就在您身边</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./ios.css" />
+  <link rel="stylesheet" href="./home.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <script src="./icons.js"></script>
+
+  <header class="topbar">
+    <a class="topbar-brand" href="./mobile.html" aria-label="北大医疗首页">
+      <img src="./assets/logo.png" alt="北大医疗" />
+      <span class="topbar-title">北大医疗</span>
+    </a>
+    <span class="topbar-spacer"></span>
+    <a class="icon-btn" href="./brand.html" aria-label="关于北大医疗">
+      <svg class="ic ic-18"><use href="#i-info"/></svg>
+    </a>
+  </header>
+
+  <main class="page home">
+    <!-- hero -->
+    <section class="home-hero">
+      <p class="eyebrow">北京大学国际医院 · PKU HEALTHCARE</p>
+      <h1 class="display">北医的专家<br /><em>就在您身边</em></h1>
+      <p class="lead">726 位医师、57 位专家，来自北医系统的临床与健康管理团队，为每一次健康选择提供专业支持。</p>
+
+      <div class="hero-stats glass">
+        <div class="stat-row">
+          <a href="./team.html?view=experts"><b id="statExperts">57</b><small>位专家</small></a>
+          <a href="./team.html?view=doctors"><b id="statDoctors">726</b><small>位医师</small></a>
+          <a href="./team.html?view=nursing"><b id="statNurses">107</b><small>专科护士</small></a>
+          <a href="./team.html?view=departments"><b id="statDepts">70</b><small>个科室</small></a>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="./team.html">
+          <svg class="ic ic-16"><use href="#i-users"/></svg>查看师资团队
+        </a>
+        <a class="btn btn-ghost" href="./camp.html">
+          <svg class="ic ic-16"><use href="#i-activity"/></svg>本期健康营
+        </a>
+      </div>
+    </section>
+
+    <!-- faculty -->
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">师资力量</h2>
+          <p class="section-sub">北医系统专家 · 临床一线</p>
+        </div>
+        <a class="section-link" href="./team.html?view=experts">全部师资<svg class="ic"><use href="#i-chev"/></svg></a>
+      </div>
+      <div class="scroller" id="expertScroller"></div>
+    </section>
+
+    <!-- health camp -->
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">正在开展</h2>
+          <p class="section-sub">项目案例 · 团队与医院可自由搭配</p>
+        </div>
+      </div>
+      <a class="camp-entry press" href="./camp.html" id="campEntry" aria-label="查看北医健康营项目团队">
+        <div class="camp-top">
+          <span class="camp-live"><i class="live-dot"></i><span id="campStatus">第 7 期 · 进行中</span></span>
+          <span class="camp-date" id="campDate">10.19 — 11.15</span>
+        </div>
+        <h3 class="camp-title">北医健康营<small>28 天代谢重塑计划</small></h3>
+        <p class="camp-desc">医学评估、营养干预、运动康复与每日陪跑，由北医系统多学科团队共同完成。</p>
+        <div class="camp-progress">
+          <div class="camp-progress-label"><span>营期进度</span><span><b id="campDay">第 18 天</b> / 共 28 天</span></div>
+          <div class="progress"><i data-progress="64" id="campProgress"></i></div>
+        </div>
+        <div class="camp-team">
+          <span class="avatar-stack" id="campAvatars"></span>
+          <span class="camp-team-copy">
+            <b id="campTeamCount">17 位项目团队</b>
+            <small id="campHospitalCount">来自 8 家医院</small>
+          </span>
+          <span class="camp-go">看团队<svg class="ic ic-14"><use href="#i-chev"/></svg></span>
+        </div>
+      </a>
+    </section>
+
+    <!-- network -->
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">分院网络</h2>
+          <p class="section-sub">6 大地区 · 12 家机构</p>
+        </div>
+        <a class="section-link" href="./hospitals.html">全部分院<svg class="ic"><use href="#i-chev"/></svg></a>
+      </div>
+      <div class="region-grid" id="regionGrid"></div>
+      <a class="network-more press" href="./hospitals.html">
+        <span><svg class="ic ic-16" style="vertical-align:-3px;margin-right:6px"><use href="#i-pin"/></svg>按地区、类型查找机构</span>
+        <span>搜索<svg class="ic ic-12"><use href="#i-chev"/></svg></span>
+      </a>
+    </section>
+
+    <!-- departments -->
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">学科与科室</h2>
+          <p class="section-sub">70 个临床与医技科室</p>
+        </div>
+        <a class="section-link" href="./team.html?view=departments">全部科室<svg class="ic"><use href="#i-chev"/></svg></a>
+      </div>
+      <div class="dept-grid">
+        <a class="dept-tile press" href="./department.html?id=_931_3292" style="--tone:#e05555">
+          <i><svg class="ic"><use href="#i-heart"/></svg></i>
+          <span><b>心血管内科</b><small>胸痛中心 · 介入诊疗</small></span>
+        </a>
+        <a class="dept-tile press" href="./department.html?id=_931_3306" style="--tone:#0b63e5">
+          <i><svg class="ic"><use href="#i-activity"/></svg></i>
+          <span><b>肾脏内科</b><small>透析通路 · 肾病管理</small></span>
+        </a>
+        <a class="dept-tile press" href="./department.html?id=_931_3303" style="--tone:#7c6cf0">
+          <i><svg class="ic"><use href="#i-clipboard"/></svg></i>
+          <span><b>血液科</b><small>造血干细胞移植</small></span>
+        </a>
+        <a class="dept-tile press" href="./department.html?id=_931_3304" style="--tone:#0aa39a">
+          <i><svg class="ic"><use href="#i-leaf"/></svg></i>
+          <span><b>内分泌科</b><small>代谢 · 体重管理</small></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section class="section reveal">
+      <a class="about-strip press" href="./brand.html">
+        <img src="./assets/hospital-intro.webp" alt="北京大学国际医院" loading="lazy" />
+        <span class="about-copy">
+          <b>北京大学国际医院</b>
+          <p>北京大学第八临床医学院 · 非营利性综合医院</p>
+          <span class="about-stats">
+            <span><b>44</b>万平方米</span>
+            <span><b>1800</b>核定床位</span>
+            <span><b>50+</b>临床医技科室</span>
+          </span>
+        </span>
+      </a>
+      <p class="home-note">健康营为项目案例，团队成员与所属医院可按项目需要自由组合与浏览。</p>
+    </section>
+
+    <footer class="footer">
+      <img src="./assets/logo.png" alt="北大医疗" />
+      <p>北大医疗 · 中国平安集团成员</p>
+      <p>医疗服务网络 · 北京大学国际医院</p>
+    </footer>
+  </main>
+
+  <nav class="tabbar" aria-label="主导航">
+    <a class="is-active" href="./mobile.html" aria-current="page">
+      <svg class="ic"><use href="#i-home"/></svg><span>首页</span>
+    </a>
+    <a href="./team.html">
+      <svg class="ic"><use href="#i-users"/></svg><span>师资</span>
+    </a>
+    <a href="./camp.html">
+      <svg class="ic"><use href="#i-activity"/></svg><span>健康营</span>
+    </a>
+    <a href="./hospitals.html">
+      <svg class="ic"><use href="#i-building"/></svg><span>分院</span>
+    </a>
+  </nav>
+
+  <div class="backdrop" id="appBackdrop"></div>
+  <div class="toast" id="appToast" role="status" aria-live="polite"></div>
+
+  <script src="./medical-team-data.js"></script>
+  <script src="./operations-team-data.js"></script>
+  <script src="./camp-data.js"></script>
+  <script src="./institutions-data.js"></script>
+  <script src="./app.js"></script>
+  <script src="./home.js"></script>
+</body>
+</html>
