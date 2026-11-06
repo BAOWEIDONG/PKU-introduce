@@ -3,16 +3,16 @@
   "use strict";
 
   const { $, escapeHtml, avatar } = window.PKU;
-  const TEAM = Array.isArray(window.MEDICAL_TEAM) ? window.MEDICAL_TEAM : [];
+  const FEATURED = window.PKU_FEATURED || { counts: {}, experts: [] };
   const CAMP = window.HEALTH_CAMP || null;
   const NET = window.PKU_NETWORK || { REGIONS: [], INSTITUTIONS: [] };
 
   /* stats */
   const counts = {
-    doctors: TEAM.length,
-    experts: TEAM.filter(item => item.expert).length,
-    nurses: Array.isArray(window.NURSES) ? window.NURSES.length : 107,
-    depts: Array.isArray(window.DEPARTMENTS) ? window.DEPARTMENTS.length : 70
+    doctors: FEATURED.counts.doctors || 726,
+    experts: FEATURED.counts.experts || 57,
+    nurses: FEATURED.counts.nurses || 107,
+    depts: FEATURED.counts.depts || 70
   };
   const setText = (id, value) => {
     const el = document.getElementById(id);
@@ -22,10 +22,7 @@
   setText("statExperts", counts.experts);
 
   /* featured faculty */
-  const featuredIds = [52080, 1025, 1181, 1243, 1180];
-  const featured = featuredIds
-    .map(id => TEAM.find(item => String(item.id) === String(id)))
-    .filter(Boolean);
+  const featured = Array.isArray(FEATURED.experts) ? FEATURED.experts : [];
   const scroller = $("#expertScroller");
   if (scroller) {
     scroller.innerHTML = featured

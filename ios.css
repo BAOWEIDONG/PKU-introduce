@@ -547,7 +547,7 @@ input { font: inherit; color: inherit; }
 /* ---------- misc ---------- */
 .divider { height: 0.5px; background: rgba(12, 21, 34, 0.08); margin: 18px 0; }
 
-.reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+.reveal { opacity: 1; transform: none; }
 .reveal.is-in { opacity: 1; transform: none; }
 
 .toast {
@@ -762,3 +762,22 @@ html.perf-lite .tabbar {
   background: rgba(255, 255, 255, 0.97);
   box-shadow: 0 10px 30px -16px rgba(13, 38, 76, 0.32);
 }
+
+/* result anchor under the sticky toolbar */
+.result-line { scroll-margin-top: calc(var(--safe-top) + 208px); }
+
+/* lightweight loading skeletons */
+.skeleton-card { pointer-events: none; }
+.sk { display: block; background: rgba(12, 21, 34, 0.06); border-radius: 50%; }
+.sk-avatar { width: 58px; height: 58px; flex: none; }
+.sk-lines { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.sk-line { height: 11px; border-radius: 6px; }
+.sk-line.w70 { width: 70%; }
+.sk-line.w65 { width: 65%; }
+.sk-line.w60 { width: 60%; }
+.sk-line.w55 { width: 55%; }
+.sk-line.w50 { width: 50%; }
+.sk-line.w45 { width: 45%; }
+.sk-line.w40 { width: 40%; }
+.sk-line.w35 { width: 35%; }
+.skeleton-row { pointer-events: none; }

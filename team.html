@@ -50,7 +50,13 @@
 
     <div class="result-line"><span id="teamResult">正在加载…</span><span id="teamHint"></span></div>
 
-    <div id="teamContent"></div>
+    <div id="teamContent">
+      <div class="person-list">
+        <div class="person skeleton-row"><span class="sk sk-avatar"></span><span class="sk-lines"><span class="sk sk-line w60"></span><span class="sk sk-line w40"></span></span></div>
+        <div class="person skeleton-row"><span class="sk sk-avatar"></span><span class="sk-lines"><span class="sk sk-line w55"></span><span class="sk sk-line w35"></span></span></div>
+        <div class="person skeleton-row"><span class="sk sk-avatar"></span><span class="sk-lines"><span class="sk sk-line w65"></span><span class="sk sk-line w45"></span></span></div>
+      </div>
+    </div>
 
     <div class="empty-state hide" id="teamEmpty">
       <b>没有找到匹配成员</b>
@@ -77,9 +83,9 @@
   <div class="backdrop" id="appBackdrop"></div>
   <div class="toast" id="appToast" role="status" aria-live="polite"></div>
 
-  <script src="./medical-team-data.js"></script>
+  <script src="./team-experts-data.js"></script>
   <script src="./operations-team-data.js"></script>
-  <script src="./departments-data.js"></script>
+  <script src="./departments-index.js"></script>
   <script src="./camp-data.js"></script>
   <script src="./app.js"></script>
   <script src="./faculty.js"></script>

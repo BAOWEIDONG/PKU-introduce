@@ -3,17 +3,20 @@
   "use strict";
 
   const { $, $$, escapeHtml, avatar, icon, toast } = window.PKU;
-  const TEAM = Array.isArray(window.MEDICAL_TEAM) ? window.MEDICAL_TEAM : [];
+  const EXPERTS = Array.isArray(window.TEAM_EXPERTS) ? window.TEAM_EXPERTS : [];
+  let DOCTORS = Array.isArray(window.TEAM_DOCTORS) ? window.TEAM_DOCTORS : [];
+  const COUNTS = window.TEAM_COUNTS || { doctors: 726, experts: EXPERTS.length };
+  let doctorsLoading = false;
   const OPS = Array.isArray(window.OPERATIONS_TEAM) ? window.OPERATIONS_TEAM : [];
-  const DEPTS = Array.isArray(window.DEPARTMENTS) ? window.DEPARTMENTS : [];
+  const DEPTS = Array.isArray(window.DEPARTMENTS_INDEX) ? window.DEPARTMENTS_INDEX : [];
   const CAMP = window.HEALTH_CAMP || { roster: [], roles: [] };
   const params = new URLSearchParams(window.location.search);
   const allowed = ["experts", "doctors", "nursing", "departments", "ops"];
   const initial = allowed.includes(params.get("view")) ? params.get("view") : "experts";
 
   const tabs = [
-    { key: "experts", label: "专家", count: TEAM.filter(item => item.expert).length },
-    { key: "doctors", label: "医师", count: TEAM.length },
+    { key: "experts", label: "专家", count: COUNTS.experts },
+    { key: "doctors", label: "医师", count: COUNTS.doctors },
     { key: "nursing", label: "护理", count: 107 },
     { key: "ops", label: "运营", count: OPS.length },
     { key: "departments", label: "科室", count: DEPTS.length }
@@ -30,6 +33,31 @@
     $("#teamTabs").innerHTML = tabs
       .map(tab => `<button type="button" role="tab" data-view="${tab.key}" class="${state.view === tab.key ? "is-active" : ""}" aria-label="${tab.label} ${tab.count} 位">${tab.label}</button>`)
       .join("");
+  }
+
+  function loadDoctors() {
+    if (DOCTORS.length || doctorsLoading) return;
+    doctorsLoading = true;
+    const content = $("#teamContent");
+    content.innerHTML = `
+      <div class="person-list">
+        <div class="person skeleton-row"><span class="sk sk-avatar"></span><span class="sk-lines"><span class="sk sk-line w60"></span><span class="sk sk-line w40"></span></span></div>
+        <div class="person skeleton-row"><span class="sk sk-avatar"></span><span class="sk-lines"><span class="sk sk-line w55"></span><span class="sk sk-line w35"></span></span></div>
+        <div class="person skeleton-row"><span class="sk sk-avatar"></span><span class="sk-lines"><span class="sk sk-line w65"></span><span class="sk sk-line w45"></span></span></div>
+      </div>`;
+    $("#teamResult").textContent = "医师团队 · 正在加载…";
+    const script = document.createElement("script");
+    script.src = "./team-doctors-data.js";
+    script.onload = () => {
+      DOCTORS = Array.isArray(window.TEAM_DOCTORS) ? window.TEAM_DOCTORS : [];
+      doctorsLoading = false;
+      render();
+    };
+    script.onerror = () => {
+      doctorsLoading = false;
+      content.innerHTML = `<div class="empty-state"><b>医师数据加载失败</b><p>请检查网络后重试。</p><button class="btn btn-ghost" type="button" onclick="location.reload()">重新加载</button></div>`;
+    };
+    document.body.appendChild(script);
   }
 
   function hospitalOfOps(id) {
@@ -71,7 +99,7 @@
   function nursingPanel() {
     return `
       <div class="profile-hero" style="padding:0;overflow:hidden">
-        <img src="./assets/nursing.webp" alt="国际护理团队" style="width:100%;height:190px;object-fit:cover" />
+        <img src="./assets/nursing.webp" alt="国际护理团队" style="width:100%;height:150px;object-fit:cover" />
         <div style="padding:18px 20px 20px">
           <p class="eyebrow">INTERNATIONAL NURSING</p>
           <h2 class="h2" style="font-size:21px">国际护理团队</h2>
@@ -97,7 +125,7 @@
         <span class="hospital-mark" style="--tone:#0b63e5;width:38px;height:38px;border-radius:12px">${icon("grid", "ic-18")}</span>
         <span class="row-copy">
           <b>${escapeHtml(dept.name)}</b>
-          <small>${escapeHtml(dept.category || "科室中心")} · ${(dept.leaders || []).length} 位学科带头人</small>
+          <small>${escapeHtml(dept.category || "科室中心")} · ${dept.doctorCount || 0} 位医生 · ${dept.leaderCount || 0} 位学科带头人</small>
         </span>
         <svg class="ic ic-16 chev"><use href="#i-chev"/></svg>
       </a>`;
@@ -137,7 +165,7 @@
     if (state.view === "departments") {
       const categories = ["科室中心", "特色中心", "特色门诊"];
       let list = DEPTS.filter(d => (d.category || "科室中心") === state.deptCategory);
-      if (query) list = DEPTS.filter(d => `${d.name} ${(d.intro || []).join("")}`.toLowerCase().includes(query));
+      if (query) list = DEPTS.filter(d => `${d.name} ${d.category || ""}`.toLowerCase().includes(query));
       content.innerHTML = `
         <div class="hospital-filter" id="deptCats" style="margin:0 -16px 12px;padding:2px 16px 6px"></div>
         <div>${list.map(deptCard).join("") || ""}</div>`;
@@ -165,7 +193,12 @@
       return;
     }
 
-    const base = state.view === "experts" ? TEAM.filter(item => item.expert) : TEAM;
+    if (state.view === "doctors" && !DOCTORS.length) {
+      if (!doctorsLoading) loadDoctors();
+      return;
+    }
+
+    const base = state.view === "experts" ? EXPERTS : EXPERTS.concat(DOCTORS);
     const list = base.filter(item => {
       if (!query) return true;
       return `${item.name} ${item.dept} ${item.title} ${item.specialty} ${item.role}`.toLowerCase().includes(query);
@@ -198,7 +231,8 @@
     else url.searchParams.set("view", state.view);
     history.replaceState(null, "", url);
     render();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const target = $(".result-line");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   let searchTimer = 0;

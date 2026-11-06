@@ -26,14 +26,27 @@ python3 -m http.server 8080
 
 ## 数据与替换
 
-- `medical-team-data.js`：726 位医师、57 位专家（沿用医院公开团队信息）
-- `departments-data.js`：70 个科室介绍
-- `member-details.js`：医师详细简介
+页面按需加载数据，首屏不再下载全量医师库：
+
+- `featured-experts-data.js`：首页精选专家（约 3KB）
+- `team-experts-data.js`：师资页首屏 57 位专家（约 35KB）
+- `team-doctors-data.js`：医师 Tab 点击后按需加载的 669 位医师
+- `departments-index.js`：师资页科室列表轻量索引
+- `departments-data.js`：科室详情页使用（完整科室介绍）
+- `member-team-0~7.js` / `member-details-0~7.js`：成员页按 id 分片加载
+- `member-lookup.js`、`medical-team-data.js`、`member-details.js`：完整源数据，保留用于重新生成分片，页面不再直接加载
 - `operations-team-data.js`：运营、健管、营养、康复岗位人员
-- `camp-data.js`：**健康营项目案例**。项目名称、营期、团队成员、所属医院、时间线均在此文件配置；团队成员可按项目自由组合，页面支持按角色与医院自由浏览。
+- `camp-data.js`：**健康营项目案例**。项目名称、营期、团队成员、所属医院、时间线均在此配置；团队成员可按项目自由组合，页面支持按角色与医院自由浏览。
 - `institutions-data.js`：12 家成员机构与地区
 
 健康营所属医院为案例演示配置，正式使用时替换 `camp-data.js` 中 `roster[].hospital` / `hospitalId` 即可，无需改动页面。
+
+## 性能说明
+
+- 首屏 JS：首页约 38KB、师资页约 90KB、健康营约 35KB、运营成员详情约 38KB（未压缩传输量，已较改版前下降 90%+）
+- 卡片不再使用实时 `backdrop-filter`，仅固定顶栏、Tab、底部弹层保留玻璃模糊
+- 内容区默认可见，不依赖滚动监听才显示，避免弱网/微信内出现空白
+- 微信内与低内存设备自动关闭固定栏模糊（`html.perf-lite`）
 
 ## 交互
 

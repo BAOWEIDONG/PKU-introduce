@@ -169,6 +169,7 @@
   place-items: center;
   border-radius: 9px;
   color: var(--role-tone, #0b63e5);
+  background: rgba(11, 99, 229, 0.1);
   background: color-mix(in srgb, var(--role-tone, #0b63e5) 11%, transparent);
 }
 .role-group-head .ic { width: 15px; height: 15px; }
@@ -368,6 +369,7 @@
   place-items: center;
   border-radius: 13px;
   color: var(--tone, #0b63e5);
+  background: rgba(11, 99, 229, 0.1);
   background: color-mix(in srgb, var(--tone, #0b63e5) 11%, transparent);
 }
 .hospital-mark .ic { width: 20px; height: 20px; }
@@ -505,3 +507,26 @@
 .feature-card b { display: block; margin-top: 6px; font-size: 15px; font-weight: 640; letter-spacing: -0.02em; }
 .feature-card p { margin: 5px 0 0; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
 .feature-card .chip { height: 22px; font-size: 10px; }
+
+/* shared bits used outside the home page */
+.hero-stats {
+  margin-top: 22px;
+  padding: 15px 10px 13px;
+  border-radius: 22px;
+}
+.hero-stats b { font-size: 22px; }
+.network-more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 0.5px solid rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 560;
+  color: var(--ink-2);
+}
+.network-more span { display: inline-flex; align-items: center; gap: 3px; color: var(--brand); font-weight: 600; white-space: nowrap; }
