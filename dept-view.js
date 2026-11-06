@@ -107,4 +107,5 @@
       ${icon("back", "ic-16")} 返回科室列表
     </a>
   `;
+window.__pageReady = true;
 })();

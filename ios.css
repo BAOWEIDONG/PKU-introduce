@@ -781,3 +781,8 @@ html.perf-lite .tabbar {
 .sk-line.w40 { width: 40%; }
 .sk-line.w35 { width: 35%; }
 .skeleton-row { pointer-events: none; }
+
+.load-slow { padding: 28px 18px; text-align: center; color: var(--ink-3); }
+.load-slow b { display: block; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+.load-slow p { margin: 0 0 14px; font-size: 12.5px; }
+.load-slow button { height: 38px; padding: 0 18px; border-radius: 12px; font-size: 13px; font-weight: 600; color: var(--brand); background: rgba(11, 99, 229, 0.09); }

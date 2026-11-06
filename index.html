@@ -7,5 +7,15 @@
   <title>北大医疗 · 医疗服务网络</title>
   <style>html,body{height:100%;margin:0;background:#f3f6fa;font-family:-apple-system,"PingFang SC",sans-serif}body{display:grid;place-items:center;color:#0c1522}a{color:#0b63e5;text-decoration:none;font-size:15px}</style>
 </head>
-<body><a href="./mobile.html">进入北大医疗 →</a></body>
+<body><a href="./mobile.html">进入北大医疗 →</a>  <script>
+    window.__pageReady = false;
+    setTimeout(function () {
+      if (window.__pageReady) return;
+      var sk = document.querySelector('.skeleton-card, .skeleton-row, #profileContent .sk, #deptContent .sk');
+      if (!sk) return;
+      var box = sk.closest('.scroller, #teamContent, #profileContent, #deptContent') || sk.parentNode;
+      if (box) box.innerHTML = '<div class="load-slow"><b>内容加载较慢</b><p>网络似乎不太稳定，请稍后重试。</p><button type="button" onclick="location.reload()">重新加载</button></div>';
+    }, 6000);
+  </script>
+</body>
 </html>

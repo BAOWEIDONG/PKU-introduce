@@ -139,6 +139,7 @@
         ${icon("back", "ic-16")} ${isOps ? "返回健康营项目团队" : "返回师资团队"}
       </a>
     `;
+    window.__pageReady = true;
   }
 
   async function start() {

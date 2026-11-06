@@ -159,4 +159,5 @@
   });
 
   render();
+window.__pageReady = true;
 })();

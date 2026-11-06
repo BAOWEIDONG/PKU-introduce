@@ -289,4 +289,5 @@
   renderHospitalFilter();
   renderRoster();
   renderSources();
+window.__pageReady = true;
 })();

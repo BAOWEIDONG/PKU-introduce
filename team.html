@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
-  <script src="./icons.js"></script>
+  <script src="./icons.js" onerror="this.onerror=null;this.src='./icons.js?r='+Date.now()"></script>
 
   <header class="topbar">
     <a class="back-btn" href="./mobile.html">
@@ -83,11 +83,21 @@
   <div class="backdrop" id="appBackdrop"></div>
   <div class="toast" id="appToast" role="status" aria-live="polite"></div>
 
-  <script src="./team-experts-data.js"></script>
-  <script src="./operations-team-data.js"></script>
-  <script src="./departments-index.js"></script>
-  <script src="./camp-data.js"></script>
-  <script src="./app.js"></script>
-  <script src="./faculty.js"></script>
+  <script src="./team-experts-data.js" onerror="this.onerror=null;this.src='./team-experts-data.js?r='+Date.now()"></script>
+  <script src="./operations-team-data.js" onerror="this.onerror=null;this.src='./operations-team-data.js?r='+Date.now()"></script>
+  <script src="./departments-index.js" onerror="this.onerror=null;this.src='./departments-index.js?r='+Date.now()"></script>
+  <script src="./camp-data.js" onerror="this.onerror=null;this.src='./camp-data.js?r='+Date.now()"></script>
+  <script src="./app.js" onerror="this.onerror=null;this.src='./app.js?r='+Date.now()"></script>
+  <script src="./faculty.js" onerror="this.onerror=null;this.src='./faculty.js?r='+Date.now()"></script>
+  <script>
+    window.__pageReady = false;
+    setTimeout(function () {
+      if (window.__pageReady) return;
+      var sk = document.querySelector('.skeleton-card, .skeleton-row, #profileContent .sk, #deptContent .sk');
+      if (!sk) return;
+      var box = sk.closest('.scroller, #teamContent, #profileContent, #deptContent') || sk.parentNode;
+      if (box) box.innerHTML = '<div class="load-slow"><b>内容加载较慢</b><p>网络似乎不太稳定，请稍后重试。</p><button type="button" onclick="location.reload()">重新加载</button></div>';
+    }, 6000);
+  </script>
 </body>
 </html>
